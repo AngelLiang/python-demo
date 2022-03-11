@@ -4,3 +4,4 @@
 |------|-------------|--------------------|
 | 101  | pyinstaller | pyinstaller 打包示例 |
 | 102  | cx_Freeze   | cx_Freeze 打包示例   |
+| 103  | pyside6     | pyside6 示例集合     |

@@ -1,5 +1,9 @@
 # cx_freeze 示例
 
+## 安装
+
+    pipenv install cx_freeze
+
 ## 快速开始
 
 hello world

@@ -1,0 +1,15 @@
+[[source]]
+name = "pypi"
+url = "https://pypi.org/simple"
+verify_ssl = true
+
+[dev-packages]
+
+[packages]
+d32575b = {editable = true,path = "./packages/aliyun-python-sdk-core-v3"}
+92f1930 = {editable = true,path = "./packages/aliyun-python-sdk-dysmsapi"}
+aliyun-python-sdk-core-v3 = {editable = true,path = "./packages/aliyun-python-sdk-core-v3"}
+aliyun-python-sdk-dysmsapi = {editable = true,path = "./packages/aliyun-python-sdk-dysmsapi"}
+
+[requires]
+python_version = "3.6"

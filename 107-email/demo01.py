@@ -8,10 +8,9 @@ mail_host = os.getenv('MAIL_HOST')
 mail_user = os.getenv('MAIL_USER')
 mail_pass = os.getenv('MAIL_PASS')
 
-
 sender = os.getenv('MAIL_SENDER')
-# 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 
+# 接收邮件，可设置为你的QQ邮箱或者其他邮箱
 receivers = os.getenv('MAIL_RECEIVERS')
 if ',' in receivers:
     receivers = receivers.split(',')

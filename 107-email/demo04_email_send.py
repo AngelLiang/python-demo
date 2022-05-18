@@ -1,6 +1,7 @@
 import os
 import smtplib
 from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 from email.header import Header
 
 # 第三方 SMTP 服务
@@ -15,12 +16,23 @@ receivers = os.getenv('MAIL_RECEIVERS')
 if ',' in receivers:
     receivers = receivers.split(',')
 
-message = MIMEText('Python 邮件发送测试...', 'plain', 'utf-8')
-message['From'] = Header(sender, 'utf-8')
-message['To'] = Header(receivers, 'utf-8')
 
-subject = 'Python SMTP 邮件测试'
+# 创建一个带附件的实例
+message = MIMEMultipart()
+message['From'] = Header("来自于", 'utf-8')
+message['To'] = Header("发送于", 'utf-8')
+subject = 'Python SMTP 邮件测试1234'
 message['Subject'] = Header(subject, 'utf-8')
+
+# 邮件正文内容
+message.attach(MIMEText('邮件正文', 'plain', 'utf-8'))
+
+# 构造附件1，传送当前目录下的 test.txt 文件
+att1 = MIMEText(open('test.txt', 'rb').read(), 'base64', 'utf-8')
+att1["Content-Type"] = 'application/octet-stream'
+# 这里的filename可以任意写，写什么名字，邮件中显示什么名字
+att1["Content-Disposition"] = 'attachment; filename="test.txt"'
+message.attach(att1)
 
 
 try:

@@ -36,9 +36,11 @@ resp, lines, octets = server.retr(index)
 msg_content = b'\r\n'.join(lines).decode('utf-8')
 # 稍后解析出邮件:
 msg = Parser().parsestr(msg_content)
+print('===邮件正文开始===')
 print(msg)
+print('===邮件正文结束===')
 
 # 可以根据邮件索引号直接从服务器删除邮件:
-# server.dele(index)
+server.dele(index)
 # 关闭连接:
 server.quit()

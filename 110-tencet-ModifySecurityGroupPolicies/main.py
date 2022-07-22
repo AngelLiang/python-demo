@@ -47,7 +47,10 @@ class TencentSecurityGroup:
         # 实例化要请求产品的client对象,clientProfile是可选的
         self.client = vpc_client.VpcClient(self.cred, region, clientProfile)
 
-    def gen_params(self, port):
+    def gen_params(self, port, action='ACCEPT'):
+        """
+        action: str, "ACCEPT" OR "DROP"
+        """
         # 实例化一个请求对象,每个接口都会对应一个request对象
         params = {
             "SecurityGroupId": self.SecurityGroupId,
@@ -57,7 +60,7 @@ class TencentSecurityGroup:
                     {
                         "Protocol": "TCP",
                         "Port": str(port),
-                        "Action": 'ACCEPT',
+                        "Action": action,
                     }
                 ]
             }
@@ -82,7 +85,7 @@ class TencentSecurityGroup:
 
 try:
     tsg = TencentSecurityGroup(SECRETID, SECRETKEY, REGION, SECURITYGROUPID)
-    resp = tsg.modify_port(10083)
+    resp = tsg.modify_port(20058)
     print(resp)
 except TencentCloudSDKException as err:
     print(err)

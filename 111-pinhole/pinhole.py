@@ -41,43 +41,57 @@ class PipeThread(threading.Thread):
         self.source = source
         self.sink = sink
         log('Creating new pipe thread %s (%s -> %s)', self, source.getpeername(), sink.getpeername())
+
         self.pipeslock.acquire()
         try:
             self.pipes.append(self)
         finally:
             self.pipeslock.release()
+
         self.pipeslock.acquire()
         try:
             pipes_now = len(self.pipes)
         finally:
             self.pipeslock.release()
+
         log('%s pipes now active', pipes_now)
 
     def run(self):
         while True:
             try:
+                # 透传
                 data = self.source.recv(1024)
                 if not data:
                     break
                 self.sink.send(data)
             except:
                 break
+
         log('%s terminating', self)
+
         self.pipeslock.acquire()
         try:
             self.pipes.remove(self)
         finally:
             self.pipeslock.release()
+
         self.pipeslock.acquire()
         try:
             pipes_left = len(self.pipes)
         finally:
             self.pipeslock.release()
+
         log('%s pipes still active', pipes_left)
 
 
 class Pinhole(threading.Thread):
+
     def __init__(self, port, newhost, newport):
+        """
+        :param port: 旧端口
+        :param newhost: 新主机
+        :param newport: 新端口
+        """
         super(Pinhole, self).__init__()
         log('Redirecting: localhost: %s->%s:%s', port, newhost, newport)
         self.newhost = newhost

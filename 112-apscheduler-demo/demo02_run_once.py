@@ -10,10 +10,11 @@ from apscheduler.schedulers.background import BackgroundScheduler
 scheduler = BackgroundScheduler()
 
 
-def hello():
-    print(f'hello @ {datetime.datetime.now()}')
+def run_once():
+    print(f'run_once @ {datetime.datetime.now()}')
 
-job = scheduler.add_job(hello, 'interval', seconds=3)
+run_date = datetime.datetime.now()+datetime.timedelta(seconds=10)
+job = scheduler.add_job(run_once, 'date', run_date=run_date)
 print('scheduler start...')
 scheduler.start()
 

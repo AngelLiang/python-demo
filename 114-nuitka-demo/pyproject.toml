@@ -6,7 +6,7 @@ authors = ["Your Name <you@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.6"
-Nuitka = "^1.0.1"
+Nuitka = "0.6.8.4"
 
 [tool.poetry.dev-dependencies]
 

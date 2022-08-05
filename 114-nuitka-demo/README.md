@@ -1,5 +1,9 @@
 # nuitka示例
 
+使用nuitka打包。
+
+成功打包的版本： nuitka==0.6.8.4
+
 ## 准备工作
 
 需要一个支持 C11 或 C++03 1的编译器，
@@ -14,6 +18,6 @@ Visual Studio 2022 在  https://www.visualstudio.com/en-us/downloads/download-vi
     poetry install
     poetry shell
 
-打包命令
+## 打包
 
-    python -m nuitka hello.py
+    python -m nuitka hello.py --mingw64
